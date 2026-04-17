@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Twitter, Dribbble, Linkedin, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe, Users, Briefcase } from "lucide-react";
 
 const team = [
   {
@@ -54,7 +54,7 @@ export function AboutSection() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="flex gap-3"
           >
-            {[Twitter, Dribbble, Linkedin].map((Icon, index) => (
+            {[Globe, Users, Briefcase].map((Icon, index) => (
               <motion.button
                 key={index}
                 whileHover={{ scale: 1.1 }}

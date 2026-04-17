@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Twitter, Linkedin, Instagram, Github, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 
 const footerLinks = {
@@ -25,10 +25,9 @@ const footerLinks = {
 };
 
 const socials = [
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Github, href: "#", label: "GitHub" },
+  { icon: Globe, href: "#", label: "Website" },
+  { icon: Mail, href: "#", label: "Email" },
+  { icon: Phone, href: "#", label: "Phone" },
 ];
 
 export function Footer() {
