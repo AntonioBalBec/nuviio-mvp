@@ -3,6 +3,7 @@
 @theme inline {
   --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-display: var(--font-display), 'Outfit', sans-serif;
   
   --color-background: #ffffff;
   --color-foreground: #0a0a0a;

@@ -39,13 +39,13 @@ export function Header() {
   const logoSize = useTransform(scrollProgress, [0, 1], [40, 36]);
   const logoInnerSize = useTransform(scrollProgress, [0, 1], [12, 8]);
   
-  // Text color - dark text throughout for light theme
-  const textColor = useTransform(scrollProgress, [0, 1], ["rgb(10,10,10)", "rgb(10,10,10)"]);
-  const textColorMuted = useTransform(scrollProgress, [0, 1], ["rgba(10,10,10,0.7)", "rgba(10,10,10,0.7)"]);
+  // Text color - white at start, dark when scrolled
+  const textColor = useTransform(scrollProgress, [0, 1], ["rgb(255,255,255)", "rgb(10,10,10)"]);
+  const textColorMuted = useTransform(scrollProgress, [0, 1], ["rgba(255,255,255,0.85)", "rgba(10,10,10,0.7)"]);
   
-  // Button styles - dark button with white text
-  const buttonBg = useTransform(scrollProgress, [0, 1], ["rgb(10,10,10)", "rgb(10,10,10)"]);
-  const buttonText = useTransform(scrollProgress, [0, 1], ["rgb(255,255,255)", "rgb(255,255,255)"]);
+  // Button styles - white at start, dark when scrolled
+  const buttonBg = useTransform(scrollProgress, [0, 1], ["rgb(255,255,255)", "rgb(10,10,10)"]);
+  const buttonText = useTransform(scrollProgress, [0, 1], ["rgb(10,10,10)", "rgb(255,255,255)"]);
 
   return (
     <>
