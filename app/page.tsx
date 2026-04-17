@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
+import { ServicesSplit } from "@/components/services-split";
 import { NodoCeroSection } from "@/components/nodo-cero-section";
 import { ClientsMarquee } from "@/components/clients-marquee";
 import { ServicesSection } from "@/components/services-section";
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <HeroSection />
+      <ServicesSplit />
       <NodoCeroSection />
       <ClientsMarquee />
       <ServicesSection />
