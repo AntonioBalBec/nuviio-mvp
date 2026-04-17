@@ -1,160 +1,176 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Globe, Users } from "lucide-react";
+import { ArrowRight, Play, Zap, Shield, BarChart3 } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-screen bg-background pt-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-start">
-          {/* Left Column - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
+    <section id="hero" className="relative min-h-screen bg-background overflow-hidden">
+      {/* Background gradient effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center mb-8"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-full">
+            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <span className="text-sm font-medium text-muted-foreground">
+              Soluciones IoT de Nueva Generación
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Main Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-center max-w-4xl mx-auto mb-8"
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight tracking-tight text-balance">
+            Conecta, Automatiza y{" "}
+            <span className="text-primary">Transforma</span> tu Empresa
+          </h1>
+        </motion.div>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
+        >
+          Desarrollamos soluciones IoT inteligentes que optimizan procesos, 
+          reducen costos y llevan tu negocio al siguiente nivel.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+        >
+          <motion.a
+            href="#contacto"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-full text-base font-medium hover:bg-foreground/90 transition-colors"
           >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-muted">
-              <img
-                src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
-                alt="Tecnología IoT de vanguardia"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            Comenzar Ahora
+            <ArrowRight className="w-4 h-4" />
+          </motion.a>
+          <motion.a
+            href="#metodologia"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-muted text-foreground rounded-full text-base font-medium hover:bg-muted/80 transition-colors"
+          >
+            <Play className="w-4 h-4" />
+            Ver Metodología
+          </motion.a>
+        </motion.div>
+
+        {/* Feature Cards Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+        >
+          {/* Card 1 */}
+          <motion.div
+            whileHover={{ y: -5 }}
+            className="group relative bg-card rounded-3xl p-8 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5"
+          >
+            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+              <Zap className="w-7 h-7 text-primary" />
             </div>
-            
-            {/* Floating Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="absolute -bottom-6 -right-6 bg-card rounded-2xl p-4 shadow-xl border border-border"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                  <Globe className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">100+</p>
-                  <p className="text-sm text-muted-foreground">Dispositivos conectados</p>
-                </div>
-              </div>
-            </motion.div>
+            <h3 className="text-xl font-semibold text-foreground mb-3">
+              Automatización
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Procesos automatizados que optimizan recursos y eliminan tareas repetitivas.
+            </p>
+            <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-muted flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <ArrowRight className="w-4 h-4 text-foreground" />
+            </div>
           </motion.div>
 
-          {/* Right Column - Content */}
-          <div className="flex flex-col gap-8">
-            {/* Main Title */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-                Innovación IoT para{" "}
-                <span className="text-primary">tu Empresa</span>
-              </h1>
-            </motion.div>
+          {/* Card 2 */}
+          <motion.div
+            whileHover={{ y: -5 }}
+            className="group relative bg-card rounded-3xl p-8 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5"
+          >
+            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+              <Shield className="w-7 h-7 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground mb-3">
+              Seguridad
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Protección de datos y comunicaciones con los más altos estándares.
+            </p>
+            <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-muted flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <ArrowRight className="w-4 h-4 text-foreground" />
+            </div>
+          </motion.div>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-lg text-muted-foreground leading-relaxed max-w-xl"
-            >
-              En <strong className="text-foreground">Nuviio</strong>, unimos tecnología, estrategia e innovación para crear{" "}
-              <span className="text-foreground">experiencias digitales impactantes</span> con soluciones IoT de vanguardia.
-            </motion.p>
+          {/* Card 3 */}
+          <motion.div
+            whileHover={{ y: -5 }}
+            className="group relative bg-card rounded-3xl p-8 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5"
+          >
+            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+              <BarChart3 className="w-7 h-7 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground mb-3">
+              Análisis
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Datos en tiempo real para decisiones estratégicas informadas.
+            </p>
+            <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-muted flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <ArrowRight className="w-4 h-4 text-foreground" />
+            </div>
+          </motion.div>
+        </motion.div>
 
-            {/* Stats Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="flex items-center gap-6"
-            >
-              <div className="flex items-center gap-3">
-                <Globe className="w-5 h-5 text-muted-foreground" />
-                <div>
-                  <p className="text-sm font-medium text-foreground">+50 Proyectos</p>
-                  <p className="text-xs text-muted-foreground">En 5 países</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-muted border-2 border-background overflow-hidden"
-                    >
-                      <img
-                        src={`https://i.pravatar.cc/100?img=${i + 10}`}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <span className="text-sm font-medium text-foreground bg-secondary text-secondary-foreground px-2 py-1 rounded-full text-xs">
-                  +12
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Cards Grid */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="grid sm:grid-cols-2 gap-4 mt-4"
-            >
-              {/* Stats Card */}
-              <div className="bg-muted rounded-2xl p-6">
-                <p className="text-5xl font-bold text-foreground">400+</p>
-                <p className="text-sm text-muted-foreground mt-2">Clientes Satisfechos</p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {["TechCorp", "InnovateMX", "DataFlow"].map((company) => (
-                    <span
-                      key={company}
-                      className="text-xs text-muted-foreground bg-background px-3 py-1 rounded-full"
-                    >
-                      {company}
-                    </span>
-                  ))}
-                </div>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full mt-6 bg-secondary text-secondary-foreground py-3 rounded-full text-sm font-medium hover:bg-secondary/90 transition-colors"
-                >
-                  Ver Planes
-                </motion.button>
-              </div>
-
-              {/* Feature Card */}
-              <div className="relative rounded-2xl overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-                  alt="IoT Dashboard"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center justify-between text-white mb-2">
-                    <span className="text-xs opacity-80">Nuviio Facts</span>
-                    <span className="text-xs opacity-80">01/04</span>
-                  </div>
-                  <p className="text-3xl font-bold text-white">100+</p>
-                  <p className="text-sm text-white/80 mt-1">
-                    Productos confiables en múltiples industrias.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+        {/* Stats Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-20 flex flex-wrap items-center justify-center gap-8 sm:gap-16"
+        >
+          <div className="text-center">
+            <p className="text-4xl sm:text-5xl font-bold text-foreground">400+</p>
+            <p className="text-sm text-muted-foreground mt-1">Clientes Activos</p>
           </div>
-        </div>
+          <div className="hidden sm:block w-px h-12 bg-border" />
+          <div className="text-center">
+            <p className="text-4xl sm:text-5xl font-bold text-foreground">50+</p>
+            <p className="text-sm text-muted-foreground mt-1">Proyectos IoT</p>
+          </div>
+          <div className="hidden sm:block w-px h-12 bg-border" />
+          <div className="text-center">
+            <p className="text-4xl sm:text-5xl font-bold text-foreground">99.9%</p>
+            <p className="text-sm text-muted-foreground mt-1">Uptime Garantizado</p>
+          </div>
+          <div className="hidden sm:block w-px h-12 bg-border" />
+          <div className="text-center">
+            <p className="text-4xl sm:text-5xl font-bold text-foreground">24/7</p>
+            <p className="text-sm text-muted-foreground mt-1">Soporte Técnico</p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
