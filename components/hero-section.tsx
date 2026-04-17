@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Play, ChevronDown } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+
 
 // Improved Lava Lamp with deep blue colors
 function LavaLampBackground() {
@@ -244,64 +244,6 @@ function FloatingNodes() {
   );
 }
 
-// Counter animation hook
-function useCounter(target: number, duration: number = 2000) {
-  const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-    
-    let startTime: number;
-    let animationFrame: number;
-    
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * target));
-      
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-    
-    animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [target, duration, hasStarted]);
-  
-  return { count, ref };
-}
-
-function StatCounter({ value, suffix = "", label }: { value: number; suffix?: string; label: string }) {
-  const { count, ref } = useCounter(value);
-  return (
-    <div ref={ref} className="text-center">
-      <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900">
-        {count}{suffix}
-      </p>
-      <p className="text-sm text-neutral-500 mt-2">{label}</p>
-    </div>
-  );
-}
-
 export function HeroSection() {
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden">
@@ -394,20 +336,32 @@ export function HeroSection() {
           </motion.a>
         </motion.div>
 
-        {/* Stats Section */}
+        {/* Transition wave to next section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto py-12 px-8 bg-white/80 backdrop-blur-md rounded-3xl border border-blue-100 shadow-xl shadow-blue-100/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
         >
-          <StatCounter value={400} suffix="+" label="Clientes Activos" />
-          <StatCounter value={50} suffix="+" label="Proyectos IoT" />
-          <StatCounter value={99} suffix=".9%" label="Uptime" />
-          <div className="text-center">
-            <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900">24/7</p>
-            <p className="text-sm text-neutral-500 mt-2">Soporte Tecnico</p>
-          </div>
+          <svg
+            viewBox="0 0 1440 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute bottom-0 w-full h-full"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0 60L48 55C96 50 192 40 288 35C384 30 480 30 576 35C672 40 768 50 864 55C960 60 1056 60 1152 55C1248 50 1344 40 1392 35L1440 30V120H0V60Z"
+              fill="url(#waveGradient)"
+            />
+            <defs>
+              <linearGradient id="waveGradient" x1="0" y1="0" x2="1440" y2="0">
+                <stop offset="0%" stopColor="rgb(5, 46, 22)" />
+                <stop offset="50%" stopColor="rgb(15, 23, 42)" />
+                <stop offset="100%" stopColor="rgb(23, 37, 84)" />
+              </linearGradient>
+            </defs>
+          </svg>
         </motion.div>
 
         {/* Scroll indicator */}
