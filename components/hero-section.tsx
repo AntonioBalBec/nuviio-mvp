@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Play, ChevronDown } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+
 
 // Improved Lava Lamp with deep blue colors
 function LavaLampBackground() {
@@ -244,64 +244,6 @@ function FloatingNodes() {
   );
 }
 
-// Counter animation hook
-function useCounter(target: number, duration: number = 2000) {
-  const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-    
-    let startTime: number;
-    let animationFrame: number;
-    
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * target));
-      
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-    
-    animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [target, duration, hasStarted]);
-  
-  return { count, ref };
-}
-
-function StatCounter({ value, suffix = "", label }: { value: number; suffix?: string; label: string }) {
-  const { count, ref } = useCounter(value);
-  return (
-    <div ref={ref} className="text-center">
-      <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900">
-        {count}{suffix}
-      </p>
-      <p className="text-sm text-neutral-500 mt-2">{label}</p>
-    </div>
-  );
-}
-
 export function HeroSection() {
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden">
@@ -392,22 +334,6 @@ export function HeroSection() {
             <Play className="w-5 h-5 text-blue-600" />
             Ver como funciona
           </motion.a>
-        </motion.div>
-
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto py-12 px-8 bg-white/80 backdrop-blur-md rounded-3xl border border-blue-100 shadow-xl shadow-blue-100/50"
-        >
-          <StatCounter value={400} suffix="+" label="Clientes Activos" />
-          <StatCounter value={50} suffix="+" label="Proyectos IoT" />
-          <StatCounter value={99} suffix=".9%" label="Uptime" />
-          <div className="text-center">
-            <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900">24/7</p>
-            <p className="text-sm text-neutral-500 mt-2">Soporte Tecnico</p>
-          </div>
         </motion.div>
 
         {/* Scroll indicator */}

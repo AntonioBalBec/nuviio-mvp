@@ -16,9 +16,9 @@ export function ServicesSplit() {
   // Transform slider to percentage (0-100)
   const sliderPercent = useTransform(sliderX, [-200, 0, 200], [0, 50, 100]);
   
-  // Content visibility - minimal opacity change
-  const coreOpacity = useTransform(sliderX, [-200, -50, 0, 50, 200], [0.3, 0.6, 1, 1, 1]);
-  const terraOpacity = useTransform(sliderX, [-200, -50, 0, 50, 200], [1, 1, 1, 0.6, 0.3]);
+  // No opacity change - always fully visible
+  const coreOpacity = 1;
+  const terraOpacity = 1;
 
   const handleDragEnd = () => {
     setIsDragging(false);
@@ -186,7 +186,7 @@ export function ServicesSplit() {
         </div>
       </motion.div>
 
-      {/* Draggable divider with N logo */}
+      {/* Draggable divider - simple line */}
       <motion.div
         drag="x"
         dragConstraints={{ left: -200, right: 200 }}
@@ -194,36 +194,20 @@ export function ServicesSplit() {
         onDragStart={() => setIsDragging(true)}
         onDragEnd={handleDragEnd}
         style={{ x: sliderX }}
-        className="absolute top-0 bottom-0 left-1/2 -ml-10 w-20 z-50 flex items-center justify-center cursor-grab active:cursor-grabbing"
+        className="absolute top-0 bottom-0 left-1/2 -ml-4 w-8 z-50 flex items-center justify-center cursor-grab active:cursor-grabbing"
       >
-        {/* Vertical line */}
-        <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-white/50 -translate-x-1/2" />
+        {/* Vertical line with handle */}
+        <div className="absolute top-0 bottom-0 left-1/2 w-1 bg-white/80 -translate-x-1/2 shadow-lg" />
         
-        {/* N Logo */}
+        {/* Handle indicator */}
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileDrag={{ scale: 1.15 }}
-          className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-2xl flex items-center justify-center transition-shadow ${isDragging ? "ring-4 ring-white/50" : ""}`}
+          className={`relative w-10 h-24 rounded-full bg-white/90 backdrop-blur-sm shadow-xl flex flex-col items-center justify-center gap-1 transition-shadow ${isDragging ? "ring-2 ring-white/50" : ""}`}
         >
-          <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-blue-500 via-cyan-500 to-emerald-500 flex items-center justify-center">
-            <span className="text-white font-bold text-xl md:text-2xl">N</span>
-          </div>
-          
-          {/* Drag hints */}
-          <motion.div 
-            animate={{ x: [-2, 2, -2] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="absolute -left-8 top-1/2 -translate-y-1/2"
-          >
-            <ChevronLeft className="w-6 h-6 text-white drop-shadow-lg" />
-          </motion.div>
-          <motion.div 
-            animate={{ x: [2, -2, 2] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="absolute -right-8 top-1/2 -translate-y-1/2"
-          >
-            <ChevronRight className="w-6 h-6 text-white drop-shadow-lg" />
-          </motion.div>
+          <ChevronLeft className="w-4 h-4 text-neutral-400" />
+          <div className="w-1 h-8 bg-neutral-300 rounded-full" />
+          <ChevronRight className="w-4 h-4 text-neutral-400" />
         </motion.div>
       </motion.div>
 
