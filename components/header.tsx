@@ -23,11 +23,10 @@ export function Header() {
   const bgOpacity = useTransform(scrollProgress, [0, 1], [0, 0.95]);
   const backdropBlur = useTransform(scrollProgress, [0, 1], [0, 20]);
   
-  // Container width and padding
-  const containerMaxWidth = useTransform(scrollProgress, [0, 1], ["100%", "720px"]);
-  const containerPadding = useTransform(scrollProgress, [0, 1], ["0px", "16px"]);
-  const innerPaddingX = useTransform(scrollProgress, [0, 1], ["24px", "16px"]);
-  const innerPaddingY = useTransform(scrollProgress, [0, 1], ["24px", "10px"]);
+  // Container width and padding - starts full width, shrinks to pill
+  const containerMaxWidth = useTransform(scrollProgress, [0, 1], ["1280px", "720px"]);
+  const innerPaddingX = useTransform(scrollProgress, [0, 1], ["32px", "20px"]);
+  const innerPaddingY = useTransform(scrollProgress, [0, 1], ["16px", "10px"]);
   
   // Border radius animation
   const borderRadius = useTransform(scrollProgress, [0, 1], ["0px", "9999px"]);
@@ -40,38 +39,39 @@ export function Header() {
   const logoSize = useTransform(scrollProgress, [0, 1], [40, 36]);
   const logoInnerSize = useTransform(scrollProgress, [0, 1], [12, 8]);
   
-  // Text color - starts white (for dark hero), stays dark when scrolled
-  const textColor = useTransform(scrollProgress, [0, 0.5], ["rgb(255,255,255)", "rgb(10,10,10)"]);
-  const textColorMuted = useTransform(scrollProgress, [0, 0.5], ["rgba(255,255,255,0.9)", "rgba(10,10,10,0.7)"]);
+  // Text color - dark text throughout for light theme
+  const textColor = useTransform(scrollProgress, [0, 1], ["rgb(10,10,10)", "rgb(10,10,10)"]);
+  const textColorMuted = useTransform(scrollProgress, [0, 1], ["rgba(10,10,10,0.7)", "rgba(10,10,10,0.7)"]);
   
-  // Button styles
-  const buttonBg = useTransform(scrollProgress, [0, 0.5], ["rgb(255,255,255)", "rgb(10,10,10)"]);
-  const buttonText = useTransform(scrollProgress, [0, 0.5], ["rgb(10,10,10)", "rgb(255,255,255)"]);
+  // Button styles - dark button with white text
+  const buttonBg = useTransform(scrollProgress, [0, 1], ["rgb(10,10,10)", "rgb(10,10,10)"]);
+  const buttonText = useTransform(scrollProgress, [0, 1], ["rgb(255,255,255)", "rgb(255,255,255)"]);
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
-        <motion.nav
-          style={{
-            maxWidth: containerMaxWidth,
-            padding: containerPadding,
-          }}
-          className="mx-auto"
-        >
-          <motion.div
+        <div className="max-w-7xl mx-auto">
+          <motion.nav
             style={{
-              backgroundColor: useTransform(bgOpacity, (v) => `rgba(255,255,255,${v})`),
-              backdropFilter: useTransform(backdropBlur, (v) => `blur(${v}px)`),
-              borderRadius,
-              paddingLeft: innerPaddingX,
-              paddingRight: innerPaddingX,
-              paddingTop: innerPaddingY,
-              paddingBottom: innerPaddingY,
-              borderColor: useTransform(borderOpacity, (v) => `rgba(0,0,0,${v})`),
-              boxShadow: useTransform(shadowOpacity, (v) => `0 4px 30px rgba(0,0,0,${v})`),
+              maxWidth: containerMaxWidth,
+              marginLeft: "auto",
+              marginRight: "auto",
             }}
-            className="flex items-center justify-between border"
           >
+            <motion.div
+              style={{
+                backgroundColor: useTransform(bgOpacity, (v) => `rgba(255,255,255,${v})`),
+                backdropFilter: useTransform(backdropBlur, (v) => `blur(${v}px)`),
+                borderRadius,
+                paddingLeft: innerPaddingX,
+                paddingRight: innerPaddingX,
+                paddingTop: innerPaddingY,
+                paddingBottom: innerPaddingY,
+                borderColor: useTransform(borderOpacity, (v) => `rgba(0,0,0,${v})`),
+                boxShadow: useTransform(shadowOpacity, (v) => `0 4px 30px rgba(0,0,0,${v})`),
+              }}
+              className="flex items-center justify-between border w-full"
+            >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
               <motion.div 
@@ -139,7 +139,8 @@ export function Header() {
               <Menu className="w-6 h-6" />
             </motion.button>
           </motion.div>
-        </motion.nav>
+          </motion.nav>
+        </div>
       </header>
 
       {/* Mobile Menu Overlay */}
