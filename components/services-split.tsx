@@ -186,7 +186,7 @@ export function ServicesSplit() {
         </div>
       </motion.div>
 
-      {/* Draggable divider - simple line */}
+      {/* Draggable divider - translucent line */}
       <motion.div
         drag="x"
         dragConstraints={{ left: -200, right: 200 }}
@@ -196,18 +196,18 @@ export function ServicesSplit() {
         style={{ x: sliderX }}
         className="absolute top-0 bottom-0 left-1/2 -ml-4 w-8 z-50 flex items-center justify-center cursor-grab active:cursor-grabbing"
       >
-        {/* Vertical line with handle */}
-        <div className="absolute top-0 bottom-0 left-1/2 w-1 bg-white/80 -translate-x-1/2 shadow-lg" />
+        {/* Vertical line - translucent */}
+        <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-white/30 -translate-x-1/2" />
         
-        {/* Handle indicator */}
+        {/* Handle indicator - translucent */}
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileDrag={{ scale: 1.15 }}
-          className={`relative w-10 h-24 rounded-full bg-white/90 backdrop-blur-sm shadow-xl flex flex-col items-center justify-center gap-1 transition-shadow ${isDragging ? "ring-2 ring-white/50" : ""}`}
+          className={`relative w-10 h-24 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg flex flex-col items-center justify-center gap-1 transition-shadow ${isDragging ? "ring-2 ring-white/40" : ""}`}
         >
-          <ChevronLeft className="w-4 h-4 text-neutral-400" />
-          <div className="w-1 h-8 bg-neutral-300 rounded-full" />
-          <ChevronRight className="w-4 h-4 text-neutral-400" />
+          <ChevronLeft className="w-4 h-4 text-white/70" />
+          <div className="w-0.5 h-8 bg-white/40 rounded-full" />
+          <ChevronRight className="w-4 h-4 text-white/70" />
         </motion.div>
       </motion.div>
 
